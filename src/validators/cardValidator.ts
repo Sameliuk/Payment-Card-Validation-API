@@ -1,4 +1,4 @@
-import { luhnCheck } from '../utils/cardTypes.js';
+import { luhnCheck, determineCardType } from '../utils/cardTypes.js';
 
 export type CardInput = {
     card_number?: string | number;
@@ -25,7 +25,6 @@ export function validateCard(input: CardInput): ValidationResult {
         throw { status: 400, message: 'Invalid JSON body' };
     }
 
-    // --- Normalize input ---
     const rawNumber = (input.card_number ?? '').toString().replace(/\s+/g, '');
     const expMonth = Number(input.expiration_month);
     const expYear = Number(input.expiration_year);
@@ -74,10 +73,13 @@ export function validateCard(input: CardInput): ValidationResult {
         }
     }
 
+    const cardType =
+        errors.length === 0 ? determineCardType(rawNumber) : undefined;
+
     return {
         valid: errors.length === 0,
         errors,
-        cardType: undefined,
+        cardType,
         cardNumber: rawNumber || undefined,
     };
 }
