@@ -1,11 +1,11 @@
-export default {
-    root: true,
+// .eslintrc.cjs
+module.exports = {
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaVersion: 2020,
         sourceType: 'module',
     },
-    plugins: ['@typescript-eslint'],
+    plugins: ['@typescript-eslint', 'prettier'],
     extends: [
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended',
@@ -22,5 +22,19 @@ export default {
             { argsIgnorePattern: '^_' },
         ],
         '@typescript-eslint/no-require-imports': 'error',
+        'prettier/prettier': [
+            'error',
+            {
+                singleQuote: true,
+                endOfLine: 'lf',
+                semi: true,
+            },
+        ],
+        quotes: ['error', 'single'],
+        semi: ['error', 'always'],
+        indent: ['error', 2],
+        eqeqeq: ['error', 'always'],
+        'no-console': 'off',
     },
+    ignorePatterns: ['dist/**', 'node_modules/**'],
 };

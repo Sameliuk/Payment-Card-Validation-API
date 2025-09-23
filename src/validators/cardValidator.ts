@@ -1,4 +1,3 @@
-// src/validators/cardValidator.ts
 import { luhnCheck } from '../utils/cardTypes.js';
 
 export type CardInput = {
@@ -64,9 +63,8 @@ export function validateCard(input: CardInput): ValidationResult {
             message: 'Expiration year must be a valid year',
         });
     } else if (Number.isInteger(expMonth) && expMonth >= 1 && expMonth <= 12) {
-        // Перевірка простроченості карти на останній день місяця
         const fullYear = expYear < 100 ? 2000 + expYear : expYear;
-        const expDate = new Date(fullYear, expMonth, 0, 23, 59, 59, 999); // останній день місяця
+        const expDate = new Date(fullYear, expMonth, 0, 23, 59, 59, 999);
         const now = new Date();
         if (expDate < now) {
             errors.push({
@@ -79,7 +77,7 @@ export function validateCard(input: CardInput): ValidationResult {
     return {
         valid: errors.length === 0,
         errors,
-        cardType: undefined, // можна додати логіку визначення типу картки
+        cardType: undefined,
         cardNumber: rawNumber || undefined,
     };
 }
