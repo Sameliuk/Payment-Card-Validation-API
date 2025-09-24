@@ -1,11 +1,11 @@
-import { Router, Request, Response } from 'express';
-import { CardService } from '../services/CardService.js';
-import { CardInput } from '../validators/cardValidator.js';
+import { Router, Request, Response } from "express";
+import { CardService } from "../services/CardService.js";
+import { CardInput } from "../validators/cardValidator.js";
 
 const router = Router();
 const cardService = new CardService();
 
-router.post('/validate', (req: Request, res: Response) => {
+router.post("/validate", (req: Request, res: Response) => {
   const input = req.body as CardInput;
 
   try {
@@ -29,7 +29,7 @@ router.post('/validate', (req: Request, res: Response) => {
   } catch (err: unknown) {
     const error = err as { status?: number; message?: string };
     return res.status(error.status ?? 500).json({
-      error: error.message ?? 'Internal Server Error',
+      error: error.message ?? "Internal Server Error",
     });
   }
 });

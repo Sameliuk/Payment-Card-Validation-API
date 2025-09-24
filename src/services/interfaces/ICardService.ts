@@ -1,4 +1,4 @@
-import { ValidationResult, CardInput } from '../../validators/cardValidator.js';
+import { ValidationResult, CardInput } from "../../validators/cardValidator.js";
 
 export interface ICardService {
   validateCard(input: CardInput): ValidationResult;

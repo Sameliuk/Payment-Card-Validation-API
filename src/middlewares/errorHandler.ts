@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from "express";
 
 type AppError = {
   status?: number;
@@ -11,12 +11,12 @@ export function errorHandler(
   res: Response,
   _next: NextFunction,
 ) {
-  if (err && typeof err === 'object' && err.status) {
+  if (err && typeof err === "object" && err.status) {
     return res.status(err.status).json({ error: err.message });
   }
 
   console.error(err);
-  res.status(500).json({ error: 'Internal Server Error' });
+  res.status(500).json({ error: "Internal Server Error" });
 
   _next(err);
 }

@@ -1,13 +1,13 @@
-import { ICardService } from './interfaces/ICardService.js';
+import { ICardService } from "./interfaces/ICardService.js";
 import {
   validateCard,
   ValidationResult,
   CardInput,
-} from '../validators/cardValidator.js';
+} from "../validators/cardValidator.js";
 import {
   determineCardType,
   maskCard as maskCardUtil,
-} from '../utils/cardTypes.js';
+} from "../utils/cardTypes.js";
 
 export class CardService implements ICardService {
   validateCard(input: CardInput): ValidationResult {
